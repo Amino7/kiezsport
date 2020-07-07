@@ -9,6 +9,11 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="kiezsport"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCPRn2JnBkH4tbiRDnK_WEhY5EqUi99VbI"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
