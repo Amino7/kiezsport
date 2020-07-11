@@ -50,10 +50,10 @@ flutter:
   assets:
      - assets/images/facebook.png
      - assets/images/Google.png
-     - assets/images/basketball.svg
-     - assets/images/football.svg
-     - assets/images/tennis.svg
-     - assets/images/volleyball.svg
+     - assets/images/basketball.png
+     - assets/images/football.png
+     - assets/images/tennis.png
+     - assets/images/volleyball.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

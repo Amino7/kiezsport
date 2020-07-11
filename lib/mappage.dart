@@ -33,7 +33,7 @@ class _MyMapPageState extends State<MapPage> {
   }
 
   //Laden des Facebook und Google Buttons/Images für die LOGIN Page
-  Widget _buildSocialBtn(Function onTap, AssetImage logo) {
+  Widget _buildSocialBtn1(Function onTap, AssetImage logo) {
     return GestureDetector(
       onTap: buttonPressed,
       child: Container(
@@ -41,7 +41,79 @@ class _MyMapPageState extends State<MapPage> {
         width: 60.0,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.white,
+          color: Colors.green,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+          image: DecorationImage(
+            image: logo,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSocialBtn2(Function onTap, AssetImage logo) {
+    return GestureDetector(
+      onTap: buttonPressed,
+      child: Container(
+        height: 60.0,
+        width: 60.0,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.yellow,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+          image: DecorationImage(
+            image: logo,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSocialBtn3(Function onTap, AssetImage logo) {
+    return GestureDetector(
+      onTap: buttonPressed,
+      child: Container(
+        height: 60.0,
+        width: 60.0,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.blue,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            ),
+          ],
+          image: DecorationImage(
+            image: logo,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSocialBtn4(Function onTap, AssetImage logo) {
+    return GestureDetector(
+      onTap: buttonPressed,
+      child: Container(
+        height: 60.0,
+        width: 60.0,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.red,
           boxShadow: [
             BoxShadow(
               color: Colors.black26,
@@ -59,32 +131,32 @@ class _MyMapPageState extends State<MapPage> {
 
   Widget _buildSocialBtnRow() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 30.0),
+      padding: EdgeInsets.symmetric(vertical: 60),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _buildSocialBtn(
+          _buildSocialBtn1(
                 () => print('Search for basketball fields'),
             AssetImage(
-              'assets/images/basketball.svg',
+              'assets/images/basketball.png',
             ),
           ),
-          _buildSocialBtn(
+          _buildSocialBtn2(
                 () => print('Search for table tennis'),
             AssetImage(
-              'assets/images/tennis.svg',
+              'assets/images/tennis.png',
             ),
           ),
-          _buildSocialBtn(
+          _buildSocialBtn3(
                 () => print('Search for volleyball fields'),
             AssetImage(
-              'assets/images/volleyball.svg',
+              'assets/images/volleyball.png',
             ),
           ),
-          _buildSocialBtn(
+          _buildSocialBtn4(
                 () => print('Search for soccer fields'),
             AssetImage(
-              'assets/images/football.svg',
+              'assets/images/football.png',
             ),
           ),
         ],
@@ -110,8 +182,8 @@ class _MyMapPageState extends State<MapPage> {
               zoom: 12.0,
             ),
           ),
-            Padding(
-              padding: const EdgeInsets.only(top:30.0),
+            Align(
+              alignment: Alignment.bottomCenter,
               child: _buildSocialBtnRow(),
             ),
         ],
