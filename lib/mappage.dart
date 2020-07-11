@@ -32,7 +32,7 @@ class _MyMapPageState extends State<MapPage> {
     mapController = controller;
   }
 
-  //Laden des Facebook und Google Buttons/Images für die LOGIN Page
+  //Laden des Facebook und Google Buttons/Images für die LOGIN Page hintereinander in unterschiedlichen Widgets
   Widget _buildSocialBtn1(Function onTap, AssetImage logo) {
     return GestureDetector(
       onTap: buttonPressed,
@@ -40,8 +40,12 @@ class _MyMapPageState extends State<MapPage> {
         height: 60.0,
         width: 60.0,
         decoration: BoxDecoration(
+          border: Border.all(
+            width: 3,
+            color: Colors.white
+          ),
           shape: BoxShape.circle,
-          color: Colors.green,
+          color: Colors.amber[300],
           boxShadow: [
             BoxShadow(
               color: Colors.black26,
@@ -51,6 +55,7 @@ class _MyMapPageState extends State<MapPage> {
           ],
           image: DecorationImage(
             image: logo,
+            fit: BoxFit.cover,
           ),
         ),
       ),
@@ -64,8 +69,12 @@ class _MyMapPageState extends State<MapPage> {
         height: 60.0,
         width: 60.0,
         decoration: BoxDecoration(
+          border: Border.all(
+              width: 3,
+              color: Colors.white
+          ),
           shape: BoxShape.circle,
-          color: Colors.yellow,
+          color: Colors.cyan[700],
           boxShadow: [
             BoxShadow(
               color: Colors.black26,
@@ -88,8 +97,12 @@ class _MyMapPageState extends State<MapPage> {
         height: 60.0,
         width: 60.0,
         decoration: BoxDecoration(
+          border: Border.all(
+              width: 3,
+              color: Colors.white
+          ),
           shape: BoxShape.circle,
-          color: Colors.blue,
+          color: Colors.deepOrange[200],
           boxShadow: [
             BoxShadow(
               color: Colors.black26,
@@ -112,8 +125,12 @@ class _MyMapPageState extends State<MapPage> {
         height: 60.0,
         width: 60.0,
         decoration: BoxDecoration(
+          border: Border.all(
+              width: 3,
+              color: Colors.white
+          ),
           shape: BoxShape.circle,
-          color: Colors.red,
+          color: Colors.green[300],
           boxShadow: [
             BoxShadow(
               color: Colors.black26,
@@ -136,25 +153,25 @@ class _MyMapPageState extends State<MapPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _buildSocialBtn1(
-                () => print('Search for basketball fields'),
+            () => print('Search for basketball fields'),
             AssetImage(
               'assets/images/basketball.png',
             ),
           ),
           _buildSocialBtn2(
-                () => print('Search for table tennis'),
+            () => print('Search for table tennis'),
             AssetImage(
               'assets/images/tennis.png',
             ),
           ),
           _buildSocialBtn3(
-                () => print('Search for volleyball fields'),
+            () => print('Search for volleyball fields'),
             AssetImage(
               'assets/images/volleyball.png',
             ),
           ),
           _buildSocialBtn4(
-                () => print('Search for soccer fields'),
+            () => print('Search for soccer fields'),
             AssetImage(
               'assets/images/football.png',
             ),
@@ -176,24 +193,26 @@ class _MyMapPageState extends State<MapPage> {
         body: Stack(
           children: <Widget>[
             GoogleMap(
-            onMapCreated: _onMapCreated,
-            initialCameraPosition: CameraPosition(
-              target: _center,
-              zoom: 12.0,
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: _center,
+                zoom: 12.0,
+              ),
             ),
-          ),
             Align(
               alignment: Alignment.bottomCenter,
               child: _buildSocialBtnRow(),
             ),
-        ],
-       ),
+          ],
+        ),
       ),
     );
   }
-  void buttonPressed(){Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => FirestoreTut()),);
-  }
 
+  void buttonPressed() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FirestoreTut()),
+    );
+  }
 }
