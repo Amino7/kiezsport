@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'mappage.dart';
+import 'firestoreTutorial.dart';
 
 void main() {
   runApp(new MyApp());
@@ -53,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
+//Laden des Facebook und Google Buttons/Images für die LOGIN Page
   Widget _buildSocialBtnRow() {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 30.0),
@@ -183,55 +185,4 @@ class _MyHomePageState extends State<MyHomePage> {
       MaterialPageRoute(builder: (context) => SecondRoute()),);
   }
 
-}
-
-
-class SecondRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Kiezsport Map',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: const Color(0xFF2196f3),
-        accentColor: const Color(0xFF2196f3),
-        canvasColor: const Color(0xFFfafafa),
-      ),
-      home: new MapPage(),
-    );
-  }
-}
-
-class MapPage extends StatefulWidget {
-  @override
-  _MyMapPageState createState() => new _MyMapPageState();
-}
-
-class _MyMapPageState extends State<MapPage> {
-  GoogleMapController mapController;
-
-  final LatLng _center = const LatLng(52.520008, 13.404954);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Kiezsport Map'),
-          backgroundColor: const Color(0xFF2196f3),
-        ),
-        body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 12.0,
-          ),
-        ),
-      ),
-    );
-  }
 }

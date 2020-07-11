@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_maps_flutter: ^0.5.24+1
+  cloud_firestore: ^0.13.0+1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -49,6 +50,10 @@ flutter:
   assets:
      - assets/images/facebook.png
      - assets/images/Google.png
+     - assets/images/basketball.svg
+     - assets/images/football.svg
+     - assets/images/tennis.svg
+     - assets/images/volleyball.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
