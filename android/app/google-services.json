@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "38749748434",
+    "firebase_url": "https://kiezsport-365ec.firebaseio.com",
+    "project_id": "kiezsport-365ec",
+    "storage_bucket": "kiezsport-365ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38749748434:android:db5393d1cf8758243cc10b",
+        "android_client_info": {
+          "package_name": "com.example.kiezsport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38749748434-3n676ijucp6u7956l0tnggle5tatnp82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_ucCFsRNeaX9c9zROoRPWOSaxIbvnJzM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38749748434-3n676ijucp6u7956l0tnggle5tatnp82.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "38749748434-sdkp60g9tot9ghhcom6620tvvtih1teo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.kiezsport"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
