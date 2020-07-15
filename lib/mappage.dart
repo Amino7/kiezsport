@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kiezsport/addMarker.dart';
 import 'package:kiezsport/firestoreTutorial.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -101,7 +102,7 @@ class _MyMapPageState extends State<MapPage> {
 
   Widget _buildPlusButton(Function onTap, AssetImage logo) {
     return GestureDetector(
-      onTap: _toggleDropdown,
+      onTap: addField,
       child: Container(
         height: 60.0,
         width: 60.0,
@@ -656,7 +657,7 @@ class _MyMapPageState extends State<MapPage> {
   void addField() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => FirestoreTut()),
+      MaterialPageRoute(builder: (context) => AddMarker()),
     );
   }
 
