@@ -150,10 +150,89 @@ class _MyMapPageState extends State<MapPage> {
     );
   }
 
+  void filterMarkers(String sportart) {
+    setState(() {
+      print(_markers.toString());
+      _markers.clear();
+
+      for (final court in markersammlung) {
+        if (court[1]['sportType'] == sportart ) {
+          final marker = Marker(
+              markerId: MarkerId(court[0]),
+              position: LatLng(court[1]['position'].latitude,
+                  court[1]['position'].longitude),
+              onTap: () {
+                print('inside on tap');
+                print(court[1].toString());
+                setState(() {
+                  currentlySelectedPin = PinInformation(
+                      location: LatLng(court[1]['position'].latitude,
+                          court[1]['position'].longitude),
+                      pinPath: 'assets/images/settings.png',
+                      locationName: court[1]['sportType'],
+                      avatarPath: 'assets/images/settings.png',
+                      labelColor: Colors.blueAccent);
+                  pinPillPosition = 118;
+                });
+              },
+              icon: _markerIcon);
+          _markers[court[1]['sportType']] = marker;
+        }
+      }
+    });
+  }
+
+  void removeFilter() {
+    setState(() {
+      print(_markers.toString());
+      _markers.clear();
+      print("doubleTap");
+      for (final court in markersammlung) {
+        final marker = Marker(
+            markerId: MarkerId(court[0]),
+            position: LatLng(
+                court[1]['position'].latitude, court[1]['position'].longitude),
+            onTap: () {
+              print('inside on tap');
+              print(court[1].toString());
+              setState(() {
+                currentlySelectedPin = PinInformation(
+                    location: LatLng(court[1]['position'].latitude,
+                        court[1]['position'].longitude),
+                    pinPath: 'assets/images/settings.png',
+                    locationName: court[1]['sportType'],
+                    avatarPath: 'assets/images/settings.png',
+                    labelColor: Colors.blueAccent);
+                pinPillPosition = 118;
+              });
+            },
+            icon: _markerIcon);
+        _markers[court[1]['sportType']] = marker;
+      }
+    });
+  }
+
+  void searchBasketball() {
+    filterMarkers('Basketball');
+  }
+
+  void searchTennis() {
+    filterMarkers('Table Tennis');
+  }
+
+  void searchVolleyball() {
+    filterMarkers('Volleyball');
+  }
+
+  void searchSoccer() {
+    filterMarkers('Soccer');
+  }
+
   //Laden der Filterbuttons zum Filtern der Sportarten
   Widget _buildSocialBtn1(Function onTap, AssetImage logo) {
     return GestureDetector(
       onTap: searchBasketball,
+      onDoubleTap: removeFilter,
       child: Container(
         height: 60.0,
         width: 60.0,
@@ -180,6 +259,7 @@ class _MyMapPageState extends State<MapPage> {
   Widget _buildSocialBtn2(Function onTap, AssetImage logo) {
     return GestureDetector(
       onTap: searchTennis,
+      onDoubleTap: removeFilter,
       child: Container(
         height: 60.0,
         width: 60.0,
@@ -205,6 +285,7 @@ class _MyMapPageState extends State<MapPage> {
   Widget _buildSocialBtn3(Function onTap, AssetImage logo) {
     return GestureDetector(
       onTap: searchVolleyball,
+      onDoubleTap: removeFilter,
       child: Container(
         height: 60.0,
         width: 60.0,
@@ -230,6 +311,7 @@ class _MyMapPageState extends State<MapPage> {
   Widget _buildSocialBtn4(Function onTap, AssetImage logo) {
     return GestureDetector(
       onTap: searchSoccer,
+      onDoubleTap: removeFilter,
       child: Container(
         height: 60.0,
         width: 60.0,
@@ -297,6 +379,7 @@ class _MyMapPageState extends State<MapPage> {
   bool mapToggle = false;
   bool markerToggle = false;
   var markersammlung = [];
+  var filteredMarkers = [];
   var currentMarker;
 
   final Map<String, Marker> _markers = {};
@@ -390,22 +473,18 @@ class _MyMapPageState extends State<MapPage> {
             markerId: MarkerId(court[0]),
             position: LatLng(
                 court[1]['position'].latitude, court[1]['position'].longitude),
-            //infoWindow: InfoWindow(
-            //  title: court[1]['sportType'],
-            //snippet: court.address,
-            //),
             onTap: () {
               print('inside on tap');
               print(court[1].toString());
               setState(() {
                 currentlySelectedPin = PinInformation(
-                    location: LatLng(
-                        court[1]['position'].latitude, court[1]['position'].longitude),
+                    location: LatLng(court[1]['position'].latitude,
+                        court[1]['position'].longitude),
                     pinPath: 'assets/images/settings.png',
                     locationName: court[1]['sportType'],
                     avatarPath: 'assets/images/settings.png',
                     labelColor: Colors.blueAccent);
-                pinPillPosition = 0;
+                pinPillPosition = 118;
               });
             },
             icon: _markerIcon);
@@ -567,34 +646,6 @@ class _MyMapPageState extends State<MapPage> {
     );
   }
 
-  void searchBasketball() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => FirestoreTut()),
-    );
-  }
-
-  void searchTennis() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => FirestoreTut()),
-    );
-  }
-
-  void searchVolleyball() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => FirestoreTut()),
-    );
-  }
-
-  void searchSoccer() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => FirestoreTut()),
-    );
-  }
-
   void settingsPressed() {
     Navigator.push(
       context,
@@ -609,16 +660,4 @@ class _MyMapPageState extends State<MapPage> {
     );
   }
 
-//  List<Placemark> placemark;
-//  String _adress;
-//  void getAdress(double latitude, double longtitude) async {
-//    placemark =
-//    await Geolocator().placemarkFromCoordinates(latitude, longtitude);
-//    _adress = placemark[0].name.toString() +
-//        ", Postal Code:" +
-//        placemark[0].postalCode.toString();
-//    setState(() {
-//      _child = mapWidget();
-//    });
-//  }
 }
