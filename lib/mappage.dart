@@ -300,6 +300,34 @@ class _MyMapPageState extends State<MapPage> {
 
   void _setMarkerIcon() async {
     _markerIcon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/images/pinBasketball.png');
+//    switch(type) {
+//      case 'basketball':
+//        {
+//          _markerIcon = await BitmapDescriptor.fromAssetImage(
+//              ImageConfiguration(), 'assets/images/pinBasketball.png');
+//        }
+//      break;
+//      case 'tischtennis':
+//        {
+//          _markerIcon = await BitmapDescriptor.fromAssetImage(
+//              ImageConfiguration(), 'assets/images/pinBasketball.png');
+//        }
+//      break;
+//
+//      case 'volleyball':
+//        {
+//          _markerIcon = await BitmapDescriptor.fromAssetImage(
+//              ImageConfiguration(), 'assets/images/pinBasketball.png');
+//        }
+//      break;
+//
+//      case 'soccer':
+//        {
+//          _markerIcon = await BitmapDescriptor.fromAssetImage(
+//              ImageConfiguration(), 'assets/images/pinBasketball.png');
+//        }
+//      break;
+//    }
   }
 
   populateClients() {
