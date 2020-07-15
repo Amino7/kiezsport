@@ -6,6 +6,14 @@ import 'package:geolocator/geolocator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:overlay_container/overlay_container.dart';
 import 'dart:async';
+import 'package:social_share_plugin/social_share_plugin.dart';
+import 'package:social_share/social_share.dart';
+import 'dart:io' show Platform;
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+
+//import 'package:screenshot/screenshot.dart';
 
 const double CAMERA_ZOOM = 13;
 const double CAMERA_TILT = 0;
@@ -55,6 +63,7 @@ class Court {
 }
 
 class _MyMapPageState extends State<MapPage> {
+  String _platformVersion = 'Unknown';
   Completer<GoogleMapController> _controller = Completer();
   //Set<Marker> _markers = {};
   BitmapDescriptor sourceIcon;
@@ -157,7 +166,7 @@ class _MyMapPageState extends State<MapPage> {
       _markers.clear();
 
       for (final court in markersammlung) {
-        if (court[1]['sportType'] == sportart ) {
+        if (court[1]['sportType'] == sportart) {
           final marker = Marker(
               markerId: MarkerId(court[0]),
               position: LatLng(court[1]['position'].latitude,
@@ -395,7 +404,18 @@ class _MyMapPageState extends State<MapPage> {
       mapToggle = true;
       populateClients();
     });
+    initPlatformState();
     _setMarkerIcon();
+  }
+
+  Future<void> initPlatformState() async {
+    String platformVersion;
+
+    if (!mounted) return;
+
+    setState(() {
+      _platformVersion = platformVersion;
+    });
   }
 
   void _setMarkerIcon() async {
@@ -463,6 +483,13 @@ class _MyMapPageState extends State<MapPage> {
 //  void _onMapCreated(GoogleMapController controller) {
 //    mapController = controller;
 //  }
+
+  Map<String, String> typeMap = {
+    "Basketball": "lorem",
+    "bar": "ipsum",
+    "bar": "ipsum",
+    "bar": "ipsum"
+  };
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
     mapController = controller;
@@ -558,8 +585,11 @@ class _MyMapPageState extends State<MapPage> {
                                   height: 50,
                                   child: ClipOval(
                                       child: Image.asset(
-                                          currentlySelectedPin.avatarPath,
-                                          fit: BoxFit.cover))), // first widget
+                                    'assets/images/pinBasketball.png', //currentlySelectedPin.avatarPath,
+                                    width: 50,
+                                    height: 50,
+                                    //fit: BoxFit.cover
+                                  ))), // first widget
                               Expanded(
                                 child: Container(
                                   margin: EdgeInsets.only(left: 20),
@@ -585,12 +615,39 @@ class _MyMapPageState extends State<MapPage> {
                                   ), // end of Column
                                 ),
                               ), // second widget
-                              Padding(
-                                  padding: EdgeInsets.all(15),
-                                  child: Image.asset(
-                                      currentlySelectedPin.pinPath,
-                                      width: 50,
-                                      height: 50)) // third widget
+                              InkWell(
+                                onTap: () async {
+                                  String url = 'https://flutter.dev/';
+                                  final quote =
+                                      'Flutter is Google’s portable UI toolkit for building beautiful, natively-compiled applications for mobile, web, and desktop from a single codebase.';
+                                  final result = await SocialSharePlugin
+                                      .shareToFeedFacebookLink(
+                                    quote: quote,
+                                    url: url,
+                                    onSuccess: (_) {
+                                      print('FACEBOOK SUCCESS');
+                                      return;
+                                    },
+                                    onCancel: () {
+                                      print('FACEBOOK CANCELLED');
+                                      return;
+                                    },
+                                    onError: (error) {
+                                      print('FACEBOOK ERROR $error');
+                                      return;
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(15),
+                                    child: Image.asset(
+                                        'assets/images/share.png',
+                                        width: 50,
+                                        height: 50),
+                                  ),
+                                ),
+                              ) // third widget
                             ])) // end of Container
                     )),
             Align(
@@ -660,5 +717,4 @@ class _MyMapPageState extends State<MapPage> {
       MaterialPageRoute(builder: (context) => AddMarker()),
     );
   }
-
 }
