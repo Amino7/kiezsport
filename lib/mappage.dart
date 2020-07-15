@@ -85,30 +85,6 @@ class _MyMapPageState extends State<MapPage> {
   }
 
   // AB HIER WERDEN DIE BUTTONS ERSTELLT
-  Widget _buildSettingsButton(Function onTap, AssetImage logo) {
-    return GestureDetector(
-      onTap: settingsPressed,
-      child: Container(
-        height: 60.0,
-        width: 60.0,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black26,
-              offset: Offset(0, 2),
-              blurRadius: 6.0,
-            ),
-          ],
-          image: DecorationImage(
-            image: logo,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildPlusButton(Function onTap, AssetImage logo) {
     return GestureDetector(
       onTap: addField,
@@ -140,19 +116,11 @@ class _MyMapPageState extends State<MapPage> {
         Padding(
           padding: const EdgeInsets.all(25.0),
           child: Container(
-            child: _buildSettingsButton(
-              () => print('The Settings'),
+            child: _buildPlusButton(
+              () => print('Add a sports field'),
               AssetImage(
-                'assets/images/settings.png',
+                'assets/images/plus.png',
               ),
-            ),
-          ),
-        ),
-        Container(
-          child: _buildPlusButton(
-            () => print('Add a sports field'),
-            AssetImage(
-              'assets/images/plus.png',
             ),
           ),
         ),
@@ -698,13 +666,6 @@ class _MyMapPageState extends State<MapPage> {
   }
 
   void buttonPressed() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => FirestoreTut()),
-    );
-  }
-
-  void settingsPressed() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => FirestoreTut()),
