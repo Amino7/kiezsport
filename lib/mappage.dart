@@ -43,9 +43,9 @@ class SecondRoute extends StatelessWidget {
     return new MaterialApp(
       title: 'Kiezsport Map',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: const Color(0xFF2196f3),
-        accentColor: const Color(0xFF2196f3),
+        primarySwatch: Colors.grey,
+        primaryColor: const Color(0xFF616161),
+        accentColor: const Color(0xFF616161),
         canvasColor: const Color(0xFFfafafa),
       ),
       home: new MapPage(),
@@ -388,35 +388,7 @@ class _MyMapPageState extends State<MapPage> {
 
   void _setMarkerIcon() async {
     _markerIcon = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(), 'assets/images/pinBasketball.png');
-//    switch(type) {
-//      case 'basketball':
-//        {
-//          _markerIcon = await BitmapDescriptor.fromAssetImage(
-//              ImageConfiguration(), 'assets/images/pinBasketball.png');
-//        }
-//      break;
-//      case 'tischtennis':
-//        {
-//          _markerIcon = await BitmapDescriptor.fromAssetImage(
-//              ImageConfiguration(), 'assets/images/pinBasketball.png');
-//        }
-//      break;
-//
-//      case 'volleyball':
-//        {
-//          _markerIcon = await BitmapDescriptor.fromAssetImage(
-//              ImageConfiguration(), 'assets/images/pinBasketball.png');
-//        }
-//      break;
-//
-//      case 'soccer':
-//        {
-//          _markerIcon = await BitmapDescriptor.fromAssetImage(
-//              ImageConfiguration(), 'assets/images/pinBasketball.png');
-//        }
-//      break;
-//    }
+        ImageConfiguration(), 'assets/images/pin.png');
   }
 
   populateClients() {
@@ -439,18 +411,6 @@ class _MyMapPageState extends State<MapPage> {
     });
   }
 
-//FÜR DISPRIBUTION AUF ANDROID ZUR ERMITTLUNG DES STANDORTS
-//  void getCurrentLocation() async {
-//    Position res = await Geolocator().getCurrentPosition();
-//    setState(() {
-//      position = res;
-////    _child = mapWidget();
-//    });
-//  }
-
-//  void _onMapCreated(GoogleMapController controller) {
-//    mapController = controller;
-//  }
 
   Map<String, String> typeMap = {
     "Basketball": "lorem",
@@ -504,7 +464,7 @@ class _MyMapPageState extends State<MapPage> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Kiezsport Map'),
-          backgroundColor: const Color(0xFF2196f3),
+          backgroundColor: Colors.blueGrey,//const Color(0xFF2196f3),
         ),
         body: Stack(
           children: <Widget>[
@@ -553,7 +513,7 @@ class _MyMapPageState extends State<MapPage> {
                                   height: 50,
                                   child: ClipOval(
                                       child: Image.asset(
-                                    'assets/images/pinBasketball.png', //currentlySelectedPin.avatarPath,
+                                    'assets/images/pin.png', //currentlySelectedPin.avatarPath,
                                     width: 50,
                                     height: 50,
                                     //fit: BoxFit.cover

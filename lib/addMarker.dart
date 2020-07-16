@@ -14,7 +14,7 @@ class AddMarker extends StatelessWidget {
     return new MaterialApp(
       title: 'Kiezsport Map',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
         primaryColor: const Color(0xFF2196f3),
         accentColor: const Color(0xFF2196f3),
         canvasColor: const Color(0xFFfafafa),
@@ -84,7 +84,7 @@ class _MarkerPageState extends State<MarkerPage> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Kiezsport Map'),
-          backgroundColor: const Color(0xFF2196f3),
+          backgroundColor: Colors.blueGrey,
         ),
         body: Padding(
           padding: const EdgeInsets.all(50.0),
